@@ -1,0 +1,47 @@
+[
+  { "title": "New Year's Day", "date": "2025-01-01" },
+  { "title": "Pongal / Makar Sankranti", "date": "2025-01-14" },
+  { "title": "Republic Day", "date": "2025-01-26" },
+
+  { "title": "Vasant Panchami", "date": "2025-02-02" },
+  { "title": "Maha Shivaratri", "date": "2025-02-26" },
+
+  { "title": "International Women's Day", "date": "2025-03-08" },
+  { "title": "Holi", "date": "2025-03-14" },
+  { "title": "Ram Navami", "date": "2025-03-31" },
+
+  { "title": "Ugadi / Gudi Padwa", "date": "2025-04-01" },
+  { "title": "Ambedkar Jayanti", "date": "2025-04-14" },
+  { "title": "Hanuman Jayanti", "date": "2025-04-16" },
+
+  { "title": "May Day / Labour Day", "date": "2025-05-01" },
+  { "title": "Mother's Day", "date": "2025-05-11" },
+  { "title": "Buddha Purnima", "date": "2025-05-12" },
+
+  { "title": "World Environment Day", "date": "2025-06-05" },
+  { "title": "Father's Day", "date": "2025-06-15" },
+  { "title": "Rath Yatra", "date": "2025-06-27" },
+
+  { "title": "Guru Purnima", "date": "2025-07-09" },
+  { "title": "Eid al-Adha (Bakrid)", "date": "2025-07-07" },
+
+  { "title": "Independence Day", "date": "2025-08-15" },
+  { "title": "Raksha Bandhan", "date": "2025-08-18" },
+  { "title": "Krishna Janmashtami", "date": "2025-08-26" },
+
+  { "title": "Teachers' Day", "date": "2025-09-05" },
+  { "title": "Ganesh Chaturthi", "date": "2025-09-06" },
+  { "title": "Engineer’s Day", "date": "2025-09-15" },
+
+  { "title": "Mahatma Gandhi Jayanti", "date": "2025-10-02" },
+  { "title": "Navaratri Begins", "date": "2025-10-01" },
+  { "title": "Vijayadashami / Dussehra", "date": "2025-10-12" },
+  { "title": "Diwali", "date": "2025-10-30" },
+
+  { "title": "Bhai Dooj", "date": "2025-11-01" },
+  { "title": "Children's Day", "date": "2025-11-14" },
+
+  { "title": "Christmas Eve", "date": "2025-12-24" },
+  { "title": "Christmas Day", "date": "2025-12-25" },
+  { "title": "New Year's Eve", "date": "2025-12-31" }
+]
