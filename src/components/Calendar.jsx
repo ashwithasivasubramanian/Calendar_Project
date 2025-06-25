@@ -14,6 +14,7 @@ const Calendar = ({ userEvents = [] }) => {
       .then((data) => {
         const savedEvents = JSON.parse(localStorage.getItem("customEvents")) || [];
 
+        // Assign manual flag only to savedEvents and userEvents
         const manualSet = new Set();
         const manualEvents = [...savedEvents, ...userEvents].map((e) => {
           const key = `${e.title}-${e.date}-${e.time ?? ''}`.trim();
@@ -21,9 +22,8 @@ const Calendar = ({ userEvents = [] }) => {
           return { ...e, _manual: true };
         });
 
-        const all = [...data.map(e => ({ ...e, _manual: false })), ...manualEvents];
+        const all = [...data, ...manualEvents];
         const uniqueMap = new Map();
-
         all.forEach((e) => {
           const key = `${e.title}-${e.date}-${e.time ?? ''}`.trim();
           if (!uniqueMap.has(key)) {
@@ -54,7 +54,7 @@ const Calendar = ({ userEvents = [] }) => {
 
   const handleDeleteEvent = (title, date, time) => {
     const key = `${title}-${date}-${time || ''}`;
-    if (!manualKeys.has(key)) return;
+    if (!manualKeys.has(key)) return; // Prevent deleting static events
 
     const updatedEvents = events.filter(
       (e) => !(e.title === title && e.date === date && e.time === time)
@@ -70,12 +70,12 @@ const Calendar = ({ userEvents = [] }) => {
 
   const handleEditEvent = (oldEvent, newEvent) => {
     const key = `${oldEvent.title}-${oldEvent.date}-${oldEvent.time || ''}`;
-    const isStatic = !manualKeys.has(key);
-    if (isStatic) return;
+    const isStatic = !(manualKeys.has(key) || oldEvent._manual);
+    if (isStatic) return; // Prevent editing static events
 
     const updatedEvents = events.map((e) => {
       if (e.title === oldEvent.title && e.date === oldEvent.date && e.time === oldEvent.time) {
-        return { ...newEvent, _manual: true };
+        return newEvent;
       }
       return e;
     });
@@ -111,6 +111,7 @@ const Calendar = ({ userEvents = [] }) => {
         >
           <div className="date">{d}</div>
           {dayEvents.map((e, idx) => {
+            const isManual = e._manual;
             return (
               <div
                 key={idx}
@@ -120,13 +121,15 @@ const Calendar = ({ userEvents = [] }) => {
               >
                 <strong>{e.title}</strong>
                 <small>{e.time}</small>
-                {e._manual && (
+                {isManual && (
                   <>
                     <button
                       onClick={() => handleDeleteEvent(e.title, e.date, e.time)}
                       className="delete-btn"
+                      style={{ fontSize: "18px", marginLeft: "8px", cursor: "pointer" }}
+                      title="Delete Event"
                     >
-                      ×
+                      ❌
                     </button>
                     <button
                       onClick={() => {
@@ -134,17 +137,14 @@ const Calendar = ({ userEvents = [] }) => {
                         const newTime = prompt("Edit time", e.time);
                         const newDuration = prompt("Edit duration", e.duration);
                         if (newTitle && newTime && newDuration) {
-                          handleEditEvent(e, {
-                            ...e,
-                            title: newTitle,
-                            time: newTime,
-                            duration: newDuration
-                          });
+                          handleEditEvent(e, { ...e, title: newTitle, time: newTime, duration: newDuration });
                         }
                       }}
                       className="edit-btn"
+                      style={{ fontSize: "18px", marginLeft: "8px", cursor: "pointer" }}
+                      title="Edit Event"
                     >
-                      ✎
+                      ✏️
                     </button>
                   </>
                 )}
